@@ -5,18 +5,18 @@ url: "https://judavi.github.io"
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Judavi
+  title: Nuts and bolts
   avatar: assets/img/triangle.svg
   favicon: assets/favicon.ico
   gravatar: # Email MD5 hash
-  description: "A website with blog posts and pages" # used by search engines
+  description: "Blog about containers, automation and other stuff" # used by search engines
 
   # Header and footer text
   header_text: > #two or three lines to describe your site
      <p>Change header text in <code>_config.yml</code> <br> to update this feature.</p>
   header_text_feature_image: assets/img/pexels/triangular.jpeg
   footer_text: >
-   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with
+   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with love?
 
   # Icons
   rss: true  # Make sure you created a feed.xml with feed.xml layout
@@ -27,7 +27,7 @@ theme_settings:
   facebook:
   flickr:
   gitlab:
-  github: "sylhare"
+  github: "judavi"
   google_plus:
   instagram:
   keybase:
@@ -38,7 +38,7 @@ theme_settings:
   stack_exchange:  # Full URL
   steam:
   tumblr:
-  twitter: # "twitter username"
+  twitter: "judavi"
   vimeo:
   wordpress:
   youtube:
