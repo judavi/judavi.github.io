@@ -17,10 +17,10 @@
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://judavi.github.io/search/">
+    <link rel="canonical" href="http://localhost:4000/search/">
 
     <!-- RSS -->
-    <link rel="alternate" type="application/atom+xml" title="Nuts and bolts" href="https://judavi.github.io///feed.xml"/>
+    <link rel="alternate" type="application/atom+xml" title="Nuts and bolts" href="http://localhost:4000///feed.xml"/>
 
     <!-- Font Awesome -->
     <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
@@ -49,10 +49,10 @@
 <meta name="generator" content="Jekyll v3.7.2" />
 <meta property="og:title" content="Search" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="https://judavi.github.io/search/" />
-<meta property="og:url" content="https://judavi.github.io/search/" />
+<link rel="canonical" href="http://localhost:4000/search/" />
+<meta property="og:url" content="http://localhost:4000/search/" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"https://judavi.github.io/search/","headline":"Search","@context":"http://schema.org"}</script>
+{"@type":"WebPage","url":"http://localhost:4000/search/","headline":"Search","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <!-- Manual seo tags -->
@@ -109,21 +109,21 @@
          
         
         <li>
-            <a class="clear" href="https://judavi.github.io/portfolio">
+            <a class="clear" href="http://localhost:4000/portfolio">
                 Portfolio
             </a>
         </li>
         
         
         <li>
-            <a class="clear" href="https://judavi.github.io/search">
+            <a class="clear" href="http://localhost:4000/search">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </a>
         </li>
         
         
         <li>
-            <a class="clear" href="https://judavi.github.io/tags">
+            <a class="clear" href="http://localhost:4000/tags">
                 <i class="fa fa-tags" aria-hidden="true"></i>
             </a>
         </li>
@@ -162,6 +162,15 @@
             resultsContainer: document.getElementById('results-container'),
             json: [
                     
+                     
+                        {
+                          "title"    : "Quick and easy Minikube machine on Azure",
+                          "category" : "",
+                          "tags"     : " azure, minikube, kubernetes",
+                          "url"      : "/2018/04/13/azure-minikube.html",
+                          "date"     : "April 13, 2018",
+                          "content"  : "If you’re learning about kubernetes the best tool that you could find around is Minikube which is perfect because you don’t need to deal with a complete k8s installation Kubernetes Installation Options that looks really intimidating.Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day. It allows to run a very simplistic one node Kubernetes cluster on a Linux VM. It’s the fastest and most straight forward way to get a fully functional Kubernetes cluster running in no time.Today I want to share an even easier method to get a Minikube machine running on Azure so you don’t need to modify anything on your local system and you will get a cloud machine available from anywhere (this is a really good if you work on multiple machines)So you will need:  An Azure account (off course)  A copy of this script in you local machine azuredeploy.json  5 minutesDeploy template from Cloud ShellWe can use Cloud Shell to deploy your template. However, you must first load your template into the storage account for your Cloud Shell.  Log in to the Azure portal  Select your Cloud Shell resource group  Select the storage account for your Cloud Shell  Select Blobs  Select + Container  Give your container a name and an access level. The sample template in this article contains no sensitive information, so allow anonymous read access. Select OK  Select the container you created  Select Upload  Find and upload your template  After it has uploaded, select the template  Copy the URL  Open the promptRun the template loaded in the Cloud ShellWe already have donne the complicated part (I promise), now that we have the template on our Azure account we could start the deployment using two commands:New-AzureRmResourceGroup -Name miniKubeResourceGroup -Location \"West Europe\" Explanation:  -Name : This will be the name for the new resource group created  -Location : The location where this resource group will be createdNew-AzureRmResourceGroupDeployment -ResourceGroupName miniKubeResourceGroup -TemplateUri copied-URL  -TemplateUri : Replace this for the URL copied from the step 11As soon as you execute the last command the deployment will start. Eventually the command prompt will ask you for the admin username/password on this machine.Connect to your new minikube machineThe last command deploys a linux virtual machine and generates a PublicIP resource so that users can RDP to it. To find out the public IP of the virtual machine, open the resource group and click on the virtual machine of the Resource Group generated by the templateSo now with the public IP you could SSH or RDP inside the Minikube instanceStart using MinikubeOpen Terminal and enter following command to start minikubesudo minikube start --vm-driver=noneCongratulations!!! you now have a fully working kubernetes installation using minikube running on Azure!"
+                        } ,
                      
                         {
                           "title"    : "Hello world!",
@@ -271,7 +280,7 @@
                 <!-- Social icons from Font Awesome, if enabled -->
                 
 <li>
-	<a href="https://judavi.github.io/feed.xml" title="Follow RSS feed">
+	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
 		<span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-rss fa-stack-1x fa-inverse"></i>

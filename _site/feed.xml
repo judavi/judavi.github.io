@@ -3,9 +3,137 @@
     <channel>
         <title>Nuts and bolts</title>
         <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-        <link>https://judavi.github.io/</link>
+        <link>http://localhost:4000/</link>
         <description>Blog about containers, automation and other stuff</description>
-        <pubDate>Wed, 28 Feb 2018 20:10:15 +0000</pubDate>
+        <pubDate>Sun, 13 May 2018 10:15:35 +0100</pubDate>
+        
+        <item>
+            <title>Quick and easy Minikube machine on Azure</title>
+            <link>/2018/04/13/azure-minikube.html</link>
+            <guid isPermaLink="true">/2018/04/13/azure-minikube.html</guid>
+            <description>&lt;p&gt;If you’re learning about kubernetes the best tool that you could find around is Minikube which is perfect because you don’t need to deal with a complete k8s installation &lt;a href=&quot;https://kubernetes.io/docs/setup/pick-right-solution/#local-machine-solutions&quot;&gt;Kubernetes Installation Options&lt;/a&gt; that looks really intimidating.&lt;/p&gt;
+
+&lt;p&gt;Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day. It allows to run a very simplistic one node Kubernetes cluster on a Linux VM. It’s the fastest and most straight forward way to get a fully functional Kubernetes cluster running in no time.&lt;/p&gt;
+
+&lt;p&gt;Today I want to share an even easier method to get a Minikube machine running on Azure so you don’t need to modify anything on your local system and you will get a cloud machine available from anywhere (this is a really good if you work on multiple machines)&lt;/p&gt;
+
+&lt;p&gt;So you will need:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;An Azure account (off course)&lt;/li&gt;
+  &lt;li&gt;A copy of this script in you local machine &lt;a href=&quot;https://github.com/Azure/AzureStack-QuickStart-Templates/blob/master/101-vm-linux-minikube/azuredeploy.json&quot;&gt;azuredeploy.json&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;5 minutes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;deploy-template-from-cloud-shell&quot;&gt;Deploy template from Cloud Shell&lt;/h2&gt;
+
+&lt;p&gt;We can use Cloud Shell to deploy your template. However, you must first load your template into the storage account for your Cloud Shell.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Log in to the &lt;a href=&quot;https://portal.azure.com/&quot;&gt;Azure portal&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Select your Cloud Shell resource group&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/1.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Select the storage account for your Cloud Shell&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/2.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Select Blobs&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/3.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Select + Container&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/4.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Give your container a name and an access level. The sample template in this article contains no sensitive information, so allow anonymous read access. Select OK&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/5.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Select the container you created&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/6.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Select Upload&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/7.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Find and upload your template&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/8.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;After it has uploaded, select the template&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/9.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Copy the URL&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/10.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open the prompt&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/11.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;run-the-template-loaded-in-the-cloud-shell&quot;&gt;Run the template loaded in the Cloud Shell&lt;/h2&gt;
+
+&lt;p&gt;We already have donne the complicated part (I promise), now that we have the template on our Azure account we could start the deployment using two commands:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;New-AzureRmResourceGroup -Name miniKubeResourceGroup -Location &lt;span class=&quot;s2&quot;&gt;&quot;West Europe&quot;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Explanation:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;-Name : This will be the name for the new resource group created&lt;/li&gt;
+  &lt;li&gt;-Location : The location where this resource group will be created&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;New-AzureRmResourceGroupDeployment -ResourceGroupName miniKubeResourceGroup -TemplateUri copied-URL&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;-TemplateUri : Replace this for the URL copied from the step 11&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As soon as you execute the last command the deployment will start. Eventually the command prompt will ask you for the admin username/password on this machine.&lt;/p&gt;
+
+&lt;h2 id=&quot;connect-to-your-new-minikube-machine&quot;&gt;Connect to your new minikube machine&lt;/h2&gt;
+
+&lt;p&gt;The last command deploys a linux virtual machine and generates a PublicIP resource so that users can RDP to it. To find out the public IP of the virtual machine, open the resource group and click on the virtual machine of the Resource Group generated by the template&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/posts/2018-04-13/12.png&quot; alt=&quot;resource-group&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So now with the public IP you could SSH or RDP inside the Minikube instance&lt;/p&gt;
+
+&lt;h2 id=&quot;start-using-minikube&quot;&gt;Start using Minikube&lt;/h2&gt;
+
+&lt;p&gt;Open Terminal and enter following command to start minikube&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;minikube &lt;span class=&quot;nb&quot;&gt;start&lt;/span&gt; --vm-driver&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;none&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Congratulations!!! you now have a fully working kubernetes installation using minikube running on Azure!&lt;/p&gt;
+
+</description>
+            <pubDate>Fri, 13 Apr 2018 00:00:00 +0100</pubDate>
+        </item>
         
         <item>
             <title>Hello world!</title>

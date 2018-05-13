@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <!-- JQuery (used for bootstrap and jekyll search) -->
+    <script src="/assets/js/jquery-3.2.1.min.js" ></script>
+    
+    <!-- Main JS (navbar.js and katex_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/2018/04/13/azure-minikube.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Nuts and bolts" href="http://localhost:4000///feed.xml"/>
+
+    <!-- Font Awesome -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+    
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css"> 
+    
+
+    <!-- KaTeX 0.8.3 -->
+    
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/katex.min.css">
+    <script src="/assets/js/katex.min.js">
+    </script>
+    
+
+    <!-- Google Analytics -->
+    
+    
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Quick and easy Minikube machine on Azure</title>
+<meta name="generator" content="Jekyll v3.7.2" />
+<meta property="og:title" content="Quick and easy Minikube machine on Azure" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="If you’re learning about kubernetes the best tool that you could find around is Minikube which is perfect because you don’t need to deal with a complete k8s installation Kubernetes Installation Options that looks really intimidating." />
+<meta property="og:description" content="If you’re learning about kubernetes the best tool that you could find around is Minikube which is perfect because you don’t need to deal with a complete k8s installation Kubernetes Installation Options that looks really intimidating." />
+<link rel="canonical" href="http://localhost:4000/2018/04/13/azure-minikube.html" />
+<meta property="og:url" content="http://localhost:4000/2018/04/13/azure-minikube.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-04-13T00:00:00+01:00" />
+<script type="application/ld+json">
+{"description":"If you’re learning about kubernetes the best tool that you could find around is Minikube which is perfect because you don’t need to deal with a complete k8s installation Kubernetes Installation Options that looks really intimidating.","@type":"BlogPosting","url":"http://localhost:4000/2018/04/13/azure-minikube.html","headline":"Quick and easy Minikube machine on Azure","dateModified":"2018-04-13T00:00:00+01:00","datePublished":"2018-04-13T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/04/13/azure-minikube.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Quick and easy Minikube machine on Azure | Nuts and bolts</title>
+    <meta name="description" content="If you’re learning about kubernetes the best tool that you could find around is Minikube which is perfect because you don’t need to deal with a complete k8s ...">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+    
+    <!-- Logo and title -->
+	<div class="branding">
+		<a href="/">
+			<img class="avatar" src="/assets/img/triangle.svg" alt=""/>
+		</a>
+
+		<h1 class="site-title">
+			<a href="/">Nuts and bolts</a>
+		</h1>
+	</div>
+    
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+    
+    <!-- Menu -->
+    <ul>
+        
+        
+        
+        
+        <li>
+            <a class="clear" href="/about/">
+                About
+            </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         
+        
+        <li>
+            <a class="clear" href="http://localhost:4000/portfolio">
+                Portfolio
+            </a>
+        </li>
+        
+        
+        <li>
+            <a class="clear" href="http://localhost:4000/search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a class="clear" href="http://localhost:4000/tags">
+                <i class="fa fa-tags" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+        
+    </ul>
+        
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header id="main" style="background-image: url('/')">
+    <h1 id="Quick+and+easy+Minikube+machine+on+Azure" class="title">Quick and easy Minikube machine on Azure</h1>
+    <p class="meta">
+    April 13, 2018
+    
+    </p>
+  </header>
+  <section class="post-content"><p>If you’re learning about kubernetes the best tool that you could find around is Minikube which is perfect because you don’t need to deal with a complete k8s installation <a href="https://kubernetes.io/docs/setup/pick-right-solution/#local-machine-solutions">Kubernetes Installation Options</a> that looks really intimidating.</p>
+
+<p>Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day. It allows to run a very simplistic one node Kubernetes cluster on a Linux VM. It’s the fastest and most straight forward way to get a fully functional Kubernetes cluster running in no time.</p>
+
+<p>Today I want to share an even easier method to get a Minikube machine running on Azure so you don’t need to modify anything on your local system and you will get a cloud machine available from anywhere (this is a really good if you work on multiple machines)</p>
+
+<p>So you will need:</p>
+<ul>
+  <li>An Azure account (off course)</li>
+  <li>A copy of this script in you local machine <a href="https://github.com/Azure/AzureStack-QuickStart-Templates/blob/master/101-vm-linux-minikube/azuredeploy.json">azuredeploy.json</a></li>
+  <li>5 minutes</li>
+</ul>
+
+<h2 id="deploy-template-from-cloud-shell">Deploy template from Cloud Shell</h2>
+
+<p>We can use Cloud Shell to deploy your template. However, you must first load your template into the storage account for your Cloud Shell.</p>
+
+<ol>
+  <li>Log in to the <a href="https://portal.azure.com/">Azure portal</a></li>
+  <li>Select your Cloud Shell resource group</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/1.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Select the storage account for your Cloud Shell</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/2.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Select Blobs</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/3.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Select + Container</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/4.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Give your container a name and an access level. The sample template in this article contains no sensitive information, so allow anonymous read access. Select OK</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/5.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Select the container you created</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/6.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Select Upload</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/7.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Find and upload your template</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/8.png" alt="resource-group" /></p>
+
+<ol>
+  <li>After it has uploaded, select the template</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/9.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Copy the URL</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/10.png" alt="resource-group" /></p>
+
+<ol>
+  <li>Open the prompt</li>
+</ol>
+
+<p><img src="/assets/img/posts/2018-04-13/11.png" alt="resource-group" /></p>
+
+<h2 id="run-the-template-loaded-in-the-cloud-shell">Run the template loaded in the Cloud Shell</h2>
+
+<p>We already have donne the complicated part (I promise), now that we have the template on our Azure account we could start the deployment using two commands:</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">New-AzureRmResourceGroup -Name miniKubeResourceGroup -Location <span class="s2">"West Europe"</span> </code></pre></figure>
+
+<p>Explanation:</p>
+<ul>
+  <li>-Name : This will be the name for the new resource group created</li>
+  <li>-Location : The location where this resource group will be created</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">New-AzureRmResourceGroupDeployment -ResourceGroupName miniKubeResourceGroup -TemplateUri copied-URL</code></pre></figure>
+
+<ul>
+  <li>-TemplateUri : Replace this for the URL copied from the step 11</li>
+</ul>
+
+<p>As soon as you execute the last command the deployment will start. Eventually the command prompt will ask you for the admin username/password on this machine.</p>
+
+<h2 id="connect-to-your-new-minikube-machine">Connect to your new minikube machine</h2>
+
+<p>The last command deploys a linux virtual machine and generates a PublicIP resource so that users can RDP to it. To find out the public IP of the virtual machine, open the resource group and click on the virtual machine of the Resource Group generated by the template</p>
+
+<p><img src="/assets/img/posts/2018-04-13/12.png" alt="resource-group" /></p>
+
+<p>So now with the public IP you could SSH or RDP inside the Minikube instance</p>
+
+<h2 id="start-using-minikube">Start using Minikube</h2>
+
+<p>Open Terminal and enter following command to start minikube</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">sudo </span>minikube <span class="nb">start</span> --vm-driver<span class="o">=</span>none</code></pre></figure>
+
+<p>Congratulations!!! you now have a fully working kubernetes installation using minikube running on Azure!</p>
+
+</section>
+   
+   <!-- Tag list -->
+  
+  
+
+
+    <footer>
+        <div class="tag-list">
+        
+          <div class="meta">Tags</div>
+        
+            
+        
+          <a class="button" href="/tags#azure">
+            <p><i class="fa fa-tag fa-fw"></i> azure</p>
+          </a>
+        
+          <a class="button" href="/tags#kubernetes">
+            <p><i class="fa fa-tag fa-fw"></i> kubernetes</p>
+          </a>
+        
+          <a class="button" href="/tags#minikube">
+            <p><i class="fa fa-tag fa-fw"></i> minikube</p>
+          </a>
+        
+        </div>
+    </footer>
+  
+
+    
+</article>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+  
+  <div id="previous-post" class="post-nav-post">
+      <p>Previous post</p>
+      <a href="/2018/02/28/first-post.html">
+        Hello world!
+      </a>
+  </div>
+  
+  
+</div>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a> with love?
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+<li>
+	<a href="http://localhost:4000/feed.xml" title="Follow RSS feed">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/judavi" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://twitter.com/judavi" title="Follow on Twitter" class="type">
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+
+  </body>
+</html>
