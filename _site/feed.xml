@@ -5,7 +5,7 @@
         <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
         <link>http://localhost:4000/</link>
         <description>Blog about containers, automation and other stuff</description>
-        <pubDate>Sun, 13 May 2018 10:15:35 +0100</pubDate>
+        <pubDate>Sun, 13 May 2018 10:26:54 +0100</pubDate>
         
         <item>
             <title>Quick and easy Minikube machine on Azure</title>

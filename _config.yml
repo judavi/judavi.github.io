@@ -45,7 +45,7 @@ theme_settings:
 
   # Scripts / Features 
   google_analytics: UA-10802098-1
-  disqus_shortname: judavi.disqus.com
+  disqus_shortname: judavi
   katex: true # Enable if using math markup
   portfolio: true
   search: true
