@@ -5,7 +5,7 @@
         <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
         <link>https://judavi.github.io/</link>
         <description>Blog about containers, automation and other stuff</description>
-        <pubDate>Mon, 06 May 2019 11:13:26 +0100</pubDate>
+        <pubDate>Mon, 06 May 2019 11:40:56 +0100</pubDate>
         
         <item>
             <title>Quick and easy Minikube machine on Azure</title>
