@@ -8,5 +8,5 @@ tags: [github, portfolio, judavi]
 
 ![image]({{ site.baseurl }}/{{ page.img }})
 
-I have some projects related with containers and bots (Github)[https://github.com/judavi]
+I have some projects related with containers and bots [Github](https://github.com/judavi)
 
